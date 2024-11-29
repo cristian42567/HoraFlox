@@ -1,15 +1,15 @@
 <template>
-  <header>HoraFlox</header>
+  <header><h1>HoraFlox</h1></header>
 
   <main>
     <p>Bienvenid@s a la mejor aplicación de registros de horas extras. Registra y consulta tus horas rápidamente.</p>
     <nav>
-      <span><button>Registrar horas</button></span>
-      <span><button>Ver registro de horas</button></span>
+      <button>Registrar horas</button>
+      <button>Ver registro de horas</button>
     </nav>
   </main>
   <footer>
-    © 2024 Cristian, Todos los derechos reservados.
+    <p>© 2024 Cristian, Todos los derechos reservados.</p>
   </footer>
 </template>
 
