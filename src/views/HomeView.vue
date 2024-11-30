@@ -4,7 +4,8 @@
   </header>
   <div class="contenedor">
     <main>
-      <p class="parrafo">Bienvenid@s a la mejor aplicación de registros de horas extras. Registra y consulta tus horas rápidamente.</p>
+      <p class="parrafo">Bienvenid@s a la mejor aplicación de registros de horas extras. Registra y consulta tus horas
+        rápidamente.</p>
       <nav class="botones">
         <button>Registrar horas</button>
         <button class="boton2">Ver registro de horas</button>
@@ -28,42 +29,48 @@ h1 {
   font-size: 4rem;
   font-weight: 600;
   color: #FFFFFF;
-
 }
 
-.contenedor{
-
+.contenedor {
   width: 440px;
   margin: auto;
+  text-align: center;
 }
 
-.parrafo{
-
+.parrafo {
   display: flex;
-  background-color: #F1F0E8;
   padding: 15px;
   border-radius: 10px;
-  font-weight: 500;
-  margin-top: 70px;
   font-size: 1.2rem;
+  color: #FFFFFF;
+  margin-top: 0px;
+
 }
 
-.botones button{
-  width:100%;
+.botones{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  gap: 50px;
+}
+
+.botones button {
+  width: 70%;
   border: none;
   font-weight: 500;
   font-size: 1.2rem;
   background-color: #F1F0E8;
-  border-radius: 10px;
-  height: 70px;
+  border-radius: 20px;
+  height: 100px;
 }
 
-.botones button:hover{
+.botones button:hover {
   cursor: pointer;
   background-color: #E5E1DA;
 }
 
-.boton2{
+.boton2 {
   margin-top: 20px;
 }
 </style>
