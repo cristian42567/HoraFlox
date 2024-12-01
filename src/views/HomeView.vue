@@ -25,7 +25,7 @@
 h1 {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 40px;
   font-size: 4rem;
   font-weight: 600;
   color: #FFFFFF;
@@ -33,6 +33,7 @@ h1 {
 
 .contenedor {
   width: 440px;
+  max-width: 100%;
   margin: auto;
   text-align: center;
 }
