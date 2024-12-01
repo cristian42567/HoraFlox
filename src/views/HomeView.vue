@@ -1,20 +1,23 @@
 <template>
-  <header>
-    <h1>HoraFlox</h1>
-  </header>
   <div class="contenedor">
-    <main>
-      <p class="parrafo">Bienvenid@s a la mejor aplicación de registros de horas extras. Registra y consulta tus horas
-        rápidamente.</p>
-      <nav class="botones">
-        <button>Registrar horas</button>
-        <button class="boton2">Ver registro de horas</button>
-      </nav>
-    </main>
+    <header>
+      <h1>HoraFlox</h1>
+    </header>
+    <div class="datos">
+      <main>
+        <p class="parrafo">Bienvenid@s a la mejor aplicación de registros de horas extras. Registra y consulta tus horas
+          rápidamente.</p>
+        <nav class="botones">
+          <button>Registrar horas</button>
+          <button class="boton2">Ver registro de horas</button>
+        </nav>
+      </main>
+    </div>
     <footer>
-      <p>© 2024 Cristian, Todos los derechos reservados.</p>
+      <p class="piePagina">© 2024 Cristian, Todos los derechos reservados.</p>
     </footer>
   </div>
+
 </template>
 
 <script setup>
@@ -25,17 +28,24 @@
 h1 {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
   font-size: 4rem;
   font-weight: 600;
   color: #FFFFFF;
 }
 
-.contenedor {
+.contenedor{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 99vh;
+}
+
+.datos {
   width: 440px;
   max-width: 100%;
   margin: auto;
-  text-align: center;
+  margin-top: 0;
 }
 
 .parrafo {
@@ -45,10 +55,10 @@ h1 {
   font-size: 1.2rem;
   color: #FFFFFF;
   margin-top: 0px;
-
+  text-align: center;
 }
 
-.botones{
+.botones {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,5 +86,11 @@ h1 {
 
 .boton2 {
   margin-top: 20px;
+}
+
+.piePagina{
+  display: flex;
+  color: #FFFFFF;
+  justify-content: center;
 }
 </style>
