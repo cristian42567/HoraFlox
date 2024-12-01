@@ -34,11 +34,11 @@ h1 {
   color: #FFFFFF;
 }
 
-.contenedor{
+.contenedor {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 99vh;
+  min-height: 100vh;
 }
 
 .datos {
@@ -49,7 +49,6 @@ h1 {
 }
 
 .parrafo {
-  display: flex;
   padding: 15px;
   border-radius: 10px;
   font-size: 1.2rem;
@@ -59,10 +58,10 @@ h1 {
 }
 
 .botones {
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
   gap: 50px;
 }
 
@@ -88,9 +87,9 @@ h1 {
   margin-top: 20px;
 }
 
-.piePagina{
-  display: flex;
-  color: #FFFFFF;
-  justify-content: center;
+.piePagina {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
 }
 </style>

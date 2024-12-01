@@ -1,10 +1,10 @@
 * {
-    font-family: system-ui;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #89A8B2;
-  }
-  
+  font-family: system-ui;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #89A8B2;
+  overflow-x: hidden;
+}
