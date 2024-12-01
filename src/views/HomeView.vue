@@ -68,6 +68,9 @@ h1 {
 .botones button:hover {
   cursor: pointer;
   background-color: #E5E1DA;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  color: #111;
 }
 
 .boton2 {
