@@ -7,9 +7,9 @@
       <main>
         <p class="parrafo">Bienvenid@s a la mejor aplicación de registros de horas extras. Registra y consulta tus horas
           rápidamente.</p>
-        <nav class="botones">
-          <button>Registrar horas</button>
-          <button class="boton2">Ver registro de horas</button>
+        <nav class="navegacion">
+          <router-link to="/registro-horas">Registrar horas</router-link>
+          <router-link to="/registro-horas" class="navegacion2">Ver registro horas</router-link>
         </nav>
       </main>
     </div>
@@ -57,7 +57,7 @@ h1 {
   text-align: center;
 }
 
-.botones {
+.navegacion {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@ h1 {
   gap: 50px;
 }
 
-.botones button {
+.navegacion router-link {
   width: 70%;
   border: none;
   font-weight: 500;
@@ -75,7 +75,7 @@ h1 {
   height: 100px;
 }
 
-.botones button:hover {
+.navegacion button:hover {
   cursor: pointer;
   background-color: #E5E1DA;
   transform: scale(1.05);
@@ -83,7 +83,7 @@ h1 {
   color: #111;
 }
 
-.boton2 {
+.navegacion2 {
   margin-top: 20px;
 }
 
