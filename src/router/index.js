@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RegisterView from '@/views/RegisterView.vue'
-import HoursView from '@/views/hoursView.vue'
+import ViewComponent from '@/views/ViewComponent.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,7 +28,7 @@ const router = createRouter({
     {
       path: '/ver-horas',
       name: 'verHoras',
-      component: HoursView
+      component: ViewComponent
     },
   ]
 })
