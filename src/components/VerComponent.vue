@@ -15,6 +15,11 @@
             </tr>
         </tbody>
     </table>
+    <div class="navegacion">
+        <button>Siguiente</button>
+        <span>pagina 1 de 1</span>
+        <button>Anterior</button>
+    </div>
 </template>
 
 <script setup>
@@ -44,7 +49,7 @@ h2 {
     color: #ffffff;
     font-size: 3rem;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .tabla {
@@ -54,7 +59,7 @@ h2 {
     background-color: #ffffff;
     border-radius: 20px;
     overflow: hidden;
-    margin: 80px auto;
+    margin: 50px auto;
 }
 
 .tabla thead th {
@@ -82,5 +87,27 @@ h2 {
 
 .tabla tbody tr {
     transition: background-color 0.2s ease;
+}
+
+.navegacion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1rem;
+}
+
+.navegacion button{
+    border: none;
+    font-size: 1rem;
+    background-color: #343a40;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navegacion button:hover{
+    background-color: #494a4b;
 }
 </style>
