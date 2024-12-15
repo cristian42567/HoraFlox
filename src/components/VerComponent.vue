@@ -15,19 +15,21 @@
             </tr>
         </tbody>
     </table>
-    <div class="navegacion">
-        <button>Siguiente</button>
-        <span>pagina 1 de 1</span>
-        <button>Anterior</button>
+    <div class="total-horas">
+        <p>El total es de {{ totalHoras }} horas extras</p>
     </div>
 </template>
 
 <script setup>
 import HorasService from '@/services/HorasService';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 
-const service = new HorasService()
-const horas = service.getHoras()
+const service = new HorasService();
+const horas = service.getHoras();
+
+const totalHoras = computed(()=> {
+    return horas.value.reduce((sum, hora) => sum + Number(hora.horasRealizadas), 0)
+});
 
 // Formatear la fecha en formato legible (por ejemplo, "dd/mm/yyyy")
 const formatFecha = (fechaISO) => {
@@ -41,7 +43,7 @@ const formatFecha = (fechaISO) => {
 
 onMounted(async () => {
     await service.fetchAll() //Llamo al método fetchAll del servicio para obtener los datos del backend
-})
+});
 </script>
 
 <style scoped>
@@ -109,5 +111,24 @@ h2 {
 
 .navegacion button:hover{
     background-color: #494a4b;
+}
+
+.total-horas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -40px;
+}
+
+.total-horas p{
+    display: flex;
+    justify-content: center;
+    background-color: #494a4b;
+    padding: 20px 0px;
+    border-radius: 15px;
+    width: 400px;
+    max-width: 90%;
+    color: #fff;
+    font-size: 1.1rem;
 }
 </style>
