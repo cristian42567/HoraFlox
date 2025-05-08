@@ -1,20 +1,19 @@
-:host{
+:host {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: aqua;
-    margin-top: 300px;
+    margin-top: 50px;
+    max-width: 80%;
 }
 
-.text{
+.text {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -23,23 +22,37 @@
     font-weight: 600;
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
-    gap: 80px;
+    margin-top: 40px;
+    gap: 60px;
 }
 
-button{
+button {
     border: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: #ECEFCA;
-    height: 100px;
-    width: 400px;
+    height: 95px;
+    width: 340px;
+    border-radius: 30px;
+    font-size: 1.6rem;
+    gap: 30px;
+    padding-left: 30px;
 }
 
-img{
-    height: 20px;
+button:hover {
+    background-color: #d3d3d3;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #9b9b9b;
+    transform: scale(0.99);
+}
+
+img {
+    height: 50px;
 }
