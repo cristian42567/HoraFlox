@@ -1,3 +1,86 @@
-p{
-    color: white;
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.2rem;
+}
+
+img {
+    width: 20px;
+}
+
+.container {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.record {
+    background-color: #ECEFCA;
+    padding: 5px 20px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.buttons {
+    background-color: #ECEFCA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 5px 40px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.buttons button {
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 15px;
+    background-color: #94B4C1;
+    border-radius: 15px;
+}
+
+.buttons button:hover {
+    background-color: #405f6d;
+    color: #ECEFCA;
+    cursor: pointer;
+}
+
+.buttons button:active {
+    background-color: #3b4f58;
+    transform: scale(0.98);
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    background-color: #ECEFCA;
+    margin-top: 25px;
+    border-radius: 15px;
+    padding: 10px 5px;
+    border-spacing: 30px 15px;
+    font-size: 1.1rem;
+}
+
+table td {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+table tr:last-child td {
+  border-bottom: none;
 }
