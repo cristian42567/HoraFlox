@@ -153,3 +153,26 @@ table button:active {
     padding: 10px 20px;
     border-radius: 15px;
 }
+
+.return-container{
+    display: flex;
+    justify-content: end;
+}
+
+.return{
+    width: 120px;
+    border: none;
+    background: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.return:hover {
+    color: #cfcfcf;
+    cursor: pointer;
+}
+
+.return:active {
+    transform: scale(0.99);
+}
