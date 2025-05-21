@@ -2,19 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     font-size: 1.2rem;
+    margin-top: 50px;
 }
 
 img {
-    width: 20px;
+    width: 35px;
 }
 
 .container {
-    background-color: aqua;
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
 }
 
 .top-bar {
@@ -61,7 +59,7 @@ img {
     transform: scale(0.98);
 }
 
-.content{
+.content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,10 +75,81 @@ table {
 }
 
 table td {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
 }
 
 table tr:last-child td {
-  border-bottom: none;
+    border-bottom: none;
+}
+
+table button {
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+table button:hover {
+    color: #547792;
+}
+
+table button:active {
+    color: #213448;
+    transform: scale(0.95);
+}
+
+.interaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.buttons-navegation {
+    display: flex;
+    gap: 40px;
+    color: #ffffff;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+}
+
+.button button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: #ECEFCA;
+    cursor: pointer;
+}
+
+.button button:hover {
+    background-color: #dce0b8;
+    cursor: pointer;
+}
+
+.button button:active {
+    background-color: #c5caa3;
+    transform: scale(0.98);
+}
+
+.total-hours {
+    background-color: #ECEFCA;
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    padding: 0px 25px;
+}
+
+.total {
+    background-color: #94B4C1;
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+.number {
+    background-color: #94B4C1;
+    padding: 10px 20px;
+    border-radius: 15px;
 }
