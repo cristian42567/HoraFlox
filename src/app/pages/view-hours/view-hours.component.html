@@ -14,48 +14,24 @@
 
     <div class="content">
         <table>
-            <tr>
-                <th>Horas</th>
-                <th>Fecha</th>
-                <th>Descripción</th>
-                <th>Acción</th>
-            </tr>
-            <tr>
-                <td>2.75 Horas</td>
-                <td>24-07-2024</td>
-                <td>Me pidieron que me quedara más horas</td>
-                <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
-            </tr>
-            <tr>
-                <td>2.75 Horas</td>
-                <td>24-07-2024</td>
-                <td>Me pidieron que me quedara más horas</td>
-                <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
-            </tr>
-            <tr>
-                <td>2.75 Horas</td>
-                <td>24-07-2024</td>
-                <td>Me pidieron que me quedara más horas</td>
-                <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
-            </tr>
-            <tr>
-                <td>2.75 Horas</td>
-                <td>24-07-2024</td>
-                <td>Me pidieron que me quedara más horas</td>
-                <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
-            </tr>
-            <tr>
-                <td>2.75 Horas</td>
-                <td>24-07-2024</td>
-                <td>Me pidieron que me quedara más horas</td>
-                <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
-            </tr>
-            <tr>
-                <td>2.75 Horas</td>
-                <td>24-07-2024</td>
-                <td>Me pidieron que me quedara más horas</td>
-                <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Horas</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (hour of hours; track $index) {
+                <tr>
+                    <td>{{hour.hours}} Horas</td>
+                    <td>{{hour.date | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{hour.description}}</td>
+                    <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
+                </tr>
+                }
+            </tbody>
         </table>
     </div>
 
@@ -77,5 +53,5 @@
     </div>
     <div class="return-container">
         <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
-    </div>    
+    </div>
 </div>

@@ -13,7 +13,7 @@ export class HoursService {
   private subjectHours: BehaviorSubject<HourInterface[]> = new BehaviorSubject<HourInterface[]>([]);
 
   //Observable expuesto para que los componentes se suscriban.
-  observableHours: Observable<HourInterface[]>=this.subjectHours.asObservable();
+  observableHours: Observable<HourInterface[]> = this.subjectHours.asObservable();
 
   constructor(private hours: HttpClient) { }
 
@@ -26,8 +26,7 @@ export class HoursService {
       });
   }
 
-
-//ACTUALIZAR ESTOS MÉTODOS DE ABAJO
+  //ACTUALIZAR ESTOS MÉTODOS DE ABAJO
   createHour() {
     this.hours
       .post('http://localhost:8080/horaflox/guardar-horas', {})

@@ -19,6 +19,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .record {
@@ -72,6 +73,7 @@ table {
     padding: 10px 5px;
     border-spacing: 30px 15px;
     font-size: 1.1rem;
+    width: 100%;
 }
 
 table td {
