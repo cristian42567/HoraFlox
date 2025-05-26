@@ -1,8 +1,6 @@
-export interface InterfazEjemploBack {
-
+export interface HourInterface {
        id: number,
        hours: number,
-       date: Date,
+       date: string,
        description: string,
-
 }

@@ -11,15 +11,15 @@ export class EjemploBackComponent {
 
   constructor(private service: HoursService){}
 
-  horas: any[] = [];
+  hours: any[] = [];
 
   ngOnInit(): void {
 
-    this.service.horasObservable.subscribe((data:any[])=> {
-      this.horas = data;
+    this.service.observableHours.subscribe((data:any[])=> {
+      this.hours = data;
     });
 
-    this.service.getCall();
+    this.service.getAllHours();
   }
   
 }
