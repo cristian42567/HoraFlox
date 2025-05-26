@@ -1,1 +1,20 @@
 <p>ejemplo-back works!</p>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Descripción</th>
+      <th>Horas</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (hora of horas; track $index) {
+      <tr>
+        <td>{{ hora.date }}</td>
+        <td>{{ hora.description }}</td>
+        <td>{{ hora.hours }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
