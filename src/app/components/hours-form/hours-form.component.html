@@ -6,24 +6,29 @@
         <p>Editar horas</p>
         }
     </header>
-    <main>
-        <p>Horas</p>
-        <input type="number">
-        <p>Fecha</p>
-        <input type="date">
-        <p>Descripción</p>
-        <input type="text">
-    </main>
-    <footer>
-        @if (editMode == false) {
-        <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
-        }@else {
-        <button class="return" (click)="closeForm()">Ir atrás</button>
-        }
-        @if (editMode == false) {
-        <button class="add">Añadir</button>
-        }@else {
-        <button class="add">Guardar</button>
-        }
-    </footer>
+    <form [formGroup]="form">
+        <main>
+            <p>Horas</p>
+            <input type="number" formControlName="hours">
+
+            <p>Fecha</p>
+            <input type="date" formControlName="date">
+
+            <p>Descripción</p>
+            <input type="text" formControlName="description">
+        </main>
+
+        <footer>
+            @if (editMode == false) {
+            <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
+            }@else {
+            <button class="return" (click)="closeForm()">Ir atrás</button>
+            }
+            @if (editMode == false) {
+            <button class="add">Añadir</button>
+            }@else {
+            <button class="add">Guardar</button>
+            }
+        </footer>
+    </form>
 </div>

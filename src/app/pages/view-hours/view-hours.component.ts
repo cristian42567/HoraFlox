@@ -13,22 +13,26 @@ import { HoursFormComponent } from "../../components/hours-form/hours-form.compo
 })
 export class ViewHoursComponent implements OnInit {
 
-  constructor(private service: HoursService){}
- 
+  constructor(private service: HoursService) { }
+
   hours: HourInterface[] = [];
 
-   ngOnInit(): void {
-    this.service.observableHours.subscribe((data)=>{
+  ngOnInit(): void {
+    this.service.observableHours.subscribe((data) => {
       this.hours = data;
     });
     this.service.getAllHours();
   }
 
-  @Input() editMode:boolean = false;
-  EditClicked:boolean = false;
+  @Input() editMode: boolean = false;
+  EditClicked: boolean = false;
 
-  clickOnEdit(){
+  clickOnEdit(hour: HourInterface) {
+    this.hourToEdit = { ...hour };
     this.EditClicked = true;
   }
+
+  hourToEdit!: HourInterface;
+
 
 }
