@@ -1,6 +1,10 @@
 <div class="container">
     <header>
+        @if (editMode == false) {
         <p>Registrar horas</p>
+        }@else {
+        <p>Editar horas</p>
+        }
     </header>
     <main>
         <p>Horas</p>
@@ -11,7 +15,15 @@
         <input type="text">
     </main>
     <footer>
+        @if (editMode == false) {
         <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
+        }@else {
+        <button class="return" (click)="closeForm()">Ir atrás</button>
+        }
+        @if (editMode == false) {
         <button class="add">Añadir</button>
+        }@else {
+        <button class="add">Guardar</button>
+        }
     </footer>
 </div>

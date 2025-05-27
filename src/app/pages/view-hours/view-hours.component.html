@@ -28,7 +28,7 @@
                     <td>{{hour.hours}} Horas</td>
                     <td>{{hour.date | date: 'dd/MM/yyyy'}}</td>
                     <td>{{hour.description}}</td>
-                    <td><button>Ver</button>/<button>Editar</button>/<button>Elminar</button></td>
+                    <td><button (click)="clickOnEdit()">Editar</button>/<button>Elminar</button></td>
                 </tr>
                 }
             </tbody>
@@ -55,3 +55,9 @@
         <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
     </div>
 </div>
+
+@if (EditClicked) {
+<div class="container-edit">
+    <app-hours-form [editMode]="true" (closeEdit)= "EditClicked = false" />
+</div>
+}

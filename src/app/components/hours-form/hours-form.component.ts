@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -7,6 +7,13 @@ import { RouterLink } from '@angular/router';
   templateUrl: './hours-form.component.html',
   styleUrl: './hours-form.component.css'
 })
-export class HoursFormComponent {
+export class HoursFormComponent{
+
+  @Input() editMode: boolean = false;
+  @Output() closeEdit: EventEmitter<void> = new EventEmitter<void>();
+
+  closeForm(){
+    this.closeEdit.emit();
+  }
 
 }

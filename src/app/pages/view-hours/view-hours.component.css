@@ -178,7 +178,15 @@ table button:active {
     transform: scale(0.99);
 }
 
-/* Responsive para pantallas pequeñas, menores de 815px */
+/* Contenedor que se abre al darle a editar al botón. */
+.container-edit{
+    background-color: #213448;
+    position: fixed;
+    width: 100vh;
+    margin-top: 50px;
+}
+
+/* Responsive para pantallas pequeñas, menores de 815px. */
 @media (max-width: 815px) {
 
     .container {
