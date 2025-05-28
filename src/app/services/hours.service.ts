@@ -36,7 +36,7 @@ export class HoursService {
   }
 
   //Método put para actualizar la hora.
-  updateHour(id:number, updatedHour: HourInterface) {
+  updateHour(id: number, updatedHour: HourInterface) {
     this.hours
       .put(`http://localhost:8080/horaflox/actualizar-hora/${id}`, updatedHour)
       .subscribe(() => {

@@ -20,12 +20,14 @@
 
         <footer>
             @if (editMode == false) {
-            <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
+            <button type="button" [routerLink]="['/inicio']" class="return">Volver a inicio</button>
+            <!--Pongo type button porque me intentaba enviar el formulario.-->
             }@else {
-            <button class="return" (click)="closeForm()">Ir atrás</button>
+            <button type="button" class="return" (click)="closeForm()">Ir atrás</button>
+            <!--Pongo type button para prevenir aunque este no me intentaba enviar el formulario.-->
             }
             @if (editMode == false) {
-            <button class="add">Añadir</button>
+            <button type="submit" class="add">Añadir</button>
             }@else {
             <button type="submit" class="add">Guardar</button>
             }

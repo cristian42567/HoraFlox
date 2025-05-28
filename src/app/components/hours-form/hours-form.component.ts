@@ -34,8 +34,8 @@ export class HoursFormComponent implements OnInit {
     });
 
     //Si estamos editando y tiene datos, cargamos los valores del formulario con sus datos.
-    if (this.editMode && this.hour) {
-      this.form.patchValue({
+    if (this.editMode && this.hour) { //Comprobamos que estamos en modo edicion y que el objeto 'hour' continene datos.
+      this.form.patchValue({ //Rellenamos el formulario con los valores del objeto 'hour'.
         hours: this.hour.hours,
         date: this.hour.date,
         description: this.hour.description,
@@ -44,13 +44,14 @@ export class HoursFormComponent implements OnInit {
 
   }
 
+  //Función para actualizar las horas.
   rewriteHour() {
-    if (this.form.valid) {
-      const updatedHour: HourInterface = this.form.value;
+    if (this.form.valid) { //Comprobamos que el formulario sea válido antes de continuar.
+      const updatedHour: HourInterface = this.form.value; //Obtenemos los datos del formulario como objeto 'HourInterface'.
 
-      if (this.editMode && this.hour?.id) {
-        this.hoursService.updateHour(this.hour.id, updatedHour);
-        this.closeForm();
+      if (this.editMode && this.hour?.id) { //Verificamos que estamos en 'editMode' y que el id es válido.
+        this.hoursService.updateHour(this.hour.id, updatedHour); //Llamamos al servicio para actualizar la hora en el backend.
+        this.closeForm(); // Cerramos el formulario después de actualizar.
       }
     }
   }
