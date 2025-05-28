@@ -58,6 +58,6 @@
 
 @if (EditClicked) {
 <div class="container-edit">
-    <app-hours-form [editMode]="true" [hour]="hourToEdit" (closeEdit)="EditClicked = false" />
+    <app-hours-form [editMode]="true" [hour]="hourToEdit" (closeEdit)="closeEditHandler()" />
 </div>
 }

@@ -182,8 +182,12 @@ table button:active {
 .container-edit{
     background-color: #213448;
     position: fixed;
-    width: 100vh;
-    margin-top: 50px;
+    width: 100vw;
+    height: 100vw;
+    margin-top: -300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Responsive para pantallas pequeñas, menores de 815px. */

@@ -33,8 +33,14 @@ export class ViewHoursComponent implements OnInit {
   clickOnEdit(hour: HourInterface) {
     this.hourToEdit = { ...hour }; //Copiamos los datos de la fila 'hour' en hourToEdit.
     this.EditClicked = true; //Al hacer click en Editar 'editClicked' cambia a true y esto hará que se muestre el formulario.
+    document.body.style.overflow = 'hidden'; //Al abrir el formulario de editar escondemos el scroll.
   }
 
   hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
+
+  closeEditHandler() {
+  this.EditClicked = false; //Ocultamos el formulario.
+  document.body.style.overflow = 'visible'; // Restauramos el scroll al salir de editar.
+}
 
 }
