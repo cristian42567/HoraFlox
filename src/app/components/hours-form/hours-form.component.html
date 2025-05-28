@@ -6,7 +6,7 @@
         <p>Editar horas</p>
         }
     </header>
-    <form [formGroup]="form" (ngSubmit)="rewriteHour()">
+    <form [formGroup]="form" (ngSubmit)="rewriteHour()" (ngSubmit)="createNewHour()">
         <main>
             <p>Horas</p>
             <input type="number" formControlName="hours">
@@ -24,7 +24,7 @@
             <!--Pongo type button porque me intentaba enviar el formulario.-->
             }@else {
             <button type="button" class="return" (click)="closeForm()">Ir atrás</button>
-            <!--Pongo type button para prevenir aunque este no me intentaba enviar el formulario.-->
+            <!--Pongo type button para prevenir aunque este no me intentaba enviar el formulario como el de volver a inicio.-->
             }
             @if (editMode == false) {
             <button type="submit" class="add">Añadir</button>

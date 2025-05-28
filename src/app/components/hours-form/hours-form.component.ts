@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HourInterface } from '../../interfaces/HourInterface';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HoursService } from '../../services/hours.service';
@@ -23,7 +23,7 @@ export class HoursFormComponent implements OnInit {
 
   form!: FormGroup; //Hacemos que el formulario sea reactivo.
 
-  constructor(private fb: FormBuilder, private hoursService: HoursService) { }
+  constructor(private fb: FormBuilder, private hoursService: HoursService, private router: Router) { }
 
   ngOnInit(): void {
     //Inicializo el formulario vacio.
@@ -52,6 +52,20 @@ export class HoursFormComponent implements OnInit {
       if (this.editMode && this.hour?.id) { //Verificamos que estamos en 'editMode' y que el id es válido.
         this.hoursService.updateHour(this.hour.id, updatedHour); //Llamamos al servicio para actualizar la hora en el backend.
         this.closeForm(); // Cerramos el formulario después de actualizar.
+      }
+    }
+  }
+
+  //Función para crear las horas.
+  createNewHour() {
+    if (this.form.valid) { //Comprobamos que el formulario sea válido antes de continuar.
+      const newHour: HourInterface = this.form.value; //Obtenemos los datos del formulario como objeto 'HourInterface'.
+
+      if (!this.editMode) { //Verificamos que no estamos en 'editMode'.
+        this.hoursService.createHour(newHour).subscribe(() => { //Llamamos al servicio para crear la hora en el backend y nos suscribimos para que siga el código cuando esté creado.
+          this.hoursService.getAllHours(); //Actualizamos la lista de horas llamando al servicio para obtener todas las horas.
+          this.router.navigate(['inicio/ver-horas']); //Navegamos a la ruta para ver las horas.
+        });
       }
     }
   }

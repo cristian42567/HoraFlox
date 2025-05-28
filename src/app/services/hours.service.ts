@@ -26,13 +26,10 @@ export class HoursService {
       });
   }
 
-  //ACTUALIZAR MÉTODO
-  createHour() {
-    this.hours
-      .post('http://localhost:8080/horaflox/guardar-horas', {})
-      .subscribe((data: any) => {
-        console.log(data)
-      });
+  //Método create para crear la hora.
+  createHour(newHour: HourInterface) {
+    return this.hours.post('http://localhost:8080/horaflox/guardar-hora', newHour)
+    //No pongo .subscribe porque lo pongo en 'hours-form.component.ts', sino no puedo poner el navigate después de la navegación.
   }
 
   //Método put para actualizar la hora.
