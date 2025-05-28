@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HourInterface } from '../../interfaces/HourInterface';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-hours-form',
@@ -11,28 +11,28 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 })
 export class HoursFormComponent implements OnInit {
 
-  @Input() editMode: boolean = false;
-  @Output() closeEdit: EventEmitter<void> = new EventEmitter<void>();
-  @Input() hour!: HourInterface;
+  @Input() editMode: boolean = false; //Con Input para decirle al hijo si el formulario está en modo edición.
+  @Output() closeEdit: EventEmitter<void> = new EventEmitter<void>();//Con Output para decirle al componente padre que se cierre el formulario cuando se emita el evento.
+  @Input() hour!: HourInterface; //Con Input para recibir los datos de la hora a editar.
 
+  //Método que emite un evento al cerrar el formulario.
   closeForm() {
     this.closeEdit.emit();
   }
 
-  form!: FormGroup;
+  form!: FormGroup; //Hacemos que el formulario sea reactivo.
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
     //Inicializo el formulario vacio.
     this.form = this.fb.group({
-      hours: [0],
+      hours: [],
       date: [''],
       description: [''],
     });
 
-    //Si estamos editando cargamos los valores del formulario.
+    //Si estamos editando y tiene datos, cargamos los valores del formulario con sus datos.
     if (this.editMode && this.hour) {
       this.form.patchValue({
         hours: this.hour.hours,
@@ -41,11 +41,6 @@ export class HoursFormComponent implements OnInit {
       });
     }
 
-  }
-
-  //Método para obtener los controles del template.
-  get f() {
-    return this.form.controls;
   }
 
 }

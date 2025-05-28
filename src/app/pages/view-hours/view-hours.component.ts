@@ -15,24 +15,26 @@ export class ViewHoursComponent implements OnInit {
 
   constructor(private service: HoursService) { }
 
-  hours: HourInterface[] = [];
+  //Creamos un array de horas con su respectiva interfaz para almacenar las horas que se obtienen en un servicio.
+  hours: HourInterface[] = []; 
 
   ngOnInit(): void {
+    //Nos suscribimos al observable del servicio 'HoursService' para recibir los datos cuando cambien.
     this.service.observableHours.subscribe((data) => {
       this.hours = data;
     });
+    //Pedimos los datos a la API del backend.
     this.service.getAllHours();
   }
 
-  @Input() editMode: boolean = false;
-  EditClicked: boolean = false;
+  @Input() editMode: boolean = false; //Con Input permitimos escuchar 'editMode' al hijo.
+  EditClicked: boolean = false; //Variable para saber si el usuario ha hecho click en el botón editar.
 
   clickOnEdit(hour: HourInterface) {
-    this.hourToEdit = { ...hour };
-    this.EditClicked = true;
+    this.hourToEdit = { ...hour }; //Copiamos los datos de la fila 'hour' en hourToEdit.
+    this.EditClicked = true; //Al hacer click en Editar 'editClicked' cambia a true y esto hará que se muestre el formulario.
   }
 
-  hourToEdit!: HourInterface;
-
+  hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
 
 }
