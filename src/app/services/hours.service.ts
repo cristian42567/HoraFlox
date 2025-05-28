@@ -26,7 +26,7 @@ export class HoursService {
       });
   }
 
-  //ACTUALIZAR ESTOS MÉTODOS DE ABAJO
+  //ACTUALIZAR MÉTODO
   createHour() {
     this.hours
       .post('http://localhost:8080/horaflox/guardar-horas', {})
@@ -35,14 +35,16 @@ export class HoursService {
       });
   }
 
-  updateHour() {
+  //Método put para actualizar la hora.
+  updateHour(id:number, updatedHour: HourInterface) {
     this.hours
-      .put('http://localhost:8080/horaflox/actualizar-hora/{id}', {})
-      .subscribe((data: any) => {
-        console.log(data)
+      .put(`http://localhost:8080/horaflox/actualizar-hora/${id}`, updatedHour)
+      .subscribe(() => {
+        this.getAllHours();
       });
   }
 
+  //ACTUALIZAR MÉTODO
   deleteHour() {
     this.hours
       .delete('http://localhost:8080/horaflox/eliminar-hora/{id}', {})

@@ -6,7 +6,7 @@
         <p>Editar horas</p>
         }
     </header>
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="rewriteHour()">
         <main>
             <p>Horas</p>
             <input type="number" formControlName="hours">
@@ -27,7 +27,7 @@
             @if (editMode == false) {
             <button class="add">Añadir</button>
             }@else {
-            <button class="add">Guardar</button>
+            <button type="submit" class="add">Guardar</button>
             }
         </footer>
     </form>

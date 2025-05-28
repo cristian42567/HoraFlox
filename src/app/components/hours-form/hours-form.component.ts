@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HourInterface } from '../../interfaces/HourInterface';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { HoursService } from '../../services/hours.service';
 
 @Component({
   selector: 'app-hours-form',
@@ -22,7 +23,7 @@ export class HoursFormComponent implements OnInit {
 
   form!: FormGroup; //Hacemos que el formulario sea reactivo.
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private hoursService: HoursService) { }
 
   ngOnInit(): void {
     //Inicializo el formulario vacio.
@@ -41,6 +42,17 @@ export class HoursFormComponent implements OnInit {
       });
     }
 
+  }
+
+  rewriteHour() {
+    if (this.form.valid) {
+      const updatedHour: HourInterface = this.form.value;
+
+      if (this.editMode && this.hour?.id) {
+        this.hoursService.updateHour(this.hour.id, updatedHour);
+        this.closeForm();
+      }
+    }
   }
 
 }
