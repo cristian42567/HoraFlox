@@ -29,7 +29,7 @@ export class HoursService {
   //Método create para crear la hora.
   createHour(newHour: HourInterface) {
     return this.hours.post('http://localhost:8080/horaflox/guardar-hora', newHour)
-    //No pongo .subscribe porque lo pongo en 'hours-form.component.ts', sino no puedo poner el navigate después de la navegación.
+    //No pongo .subscribe porque lo pongo en 'hours-form.component.ts', así me puedo suscribir también a la navegación.
   }
 
   //Método put para actualizar la hora.
@@ -41,12 +41,14 @@ export class HoursService {
       });
   }
 
-  //ACTUALIZAR MÉTODO
-  deleteHour() {
+  //Método delete para eliminar la hora.
+  deleteHour(id: number): void { //El ':void' significa que no retorna nada.
     this.hours
-      .delete('http://localhost:8080/horaflox/eliminar-hora/{id}', {})
-      .subscribe((data: any) => {
-        console.log(data)
+      .delete(`http://localhost:8080/horaflox/eliminar-hora/${id}`)
+      .subscribe(() => {
+        const currentHours = this.subjectHours.getValue(); //Obtenemos el valor actual.
+        const updatedHours = currentHours.filter(h => h.id !== id); //Quitamos la hora con ese id.
+        this.subjectHours.next(updatedHours); //Emitimos el nuevo valor.
       });
   }
 

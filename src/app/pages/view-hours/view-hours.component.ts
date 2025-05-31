@@ -16,7 +16,7 @@ export class ViewHoursComponent implements OnInit {
   constructor(private service: HoursService) { }
 
   //Creamos un array de horas con su respectiva interfaz para almacenar las horas que se obtienen en un servicio.
-  hours: HourInterface[] = []; 
+  hours: HourInterface[] = [];
 
   ngOnInit(): void {
     //Nos suscribimos al observable del servicio 'HoursService' para recibir los datos cuando cambien.
@@ -39,8 +39,14 @@ export class ViewHoursComponent implements OnInit {
   hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
 
   closeEditHandler() {
-  this.EditClicked = false; //Ocultamos el formulario.
-  document.body.style.overflow = 'visible'; // Restauramos el scroll al salir de editar.
-}
+    this.EditClicked = false; //Ocultamos el formulario.
+    document.body.style.overflow = 'visible'; // Restauramos el scroll al salir de editar.
+  }
+
+  deleteHour(id: number): void {
+    if (confirm('¿Estás seguro de que quieres eliminar esta hora?')) { //Preguntamos si estamos seguros de eliminar la hora.
+      this.service.deleteHour(id); //Llamamos al servicio para eliminar la hora.
+    }
+  }
 
 }
