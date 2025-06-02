@@ -42,7 +42,7 @@ export class HoursService {
   }
 
   //Método delete para eliminar la hora.
-  deleteHour(id: number): void { //El ':void' significa que no retorna nada.
+  deleteHour(id: number) {
     this.hours
       .delete(`http://localhost:8080/horaflox/eliminar-hora/${id}`)
       .subscribe(() => {

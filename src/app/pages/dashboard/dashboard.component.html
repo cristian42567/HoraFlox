@@ -4,16 +4,26 @@
         <p>¿Qué quieres hacer hoy?</p>
     </div>
     <div class="buttons">
-        <button [routerLink]="['/inicio/registrar-horas']"><img src="/assets/CalendarioRegistro.png" alt="Calendario de registro">Registrar horas</button>
+        <button [routerLink]="['/inicio/registrar-horas']"><img src="/assets/CalendarioRegistro.png"
+                alt="Calendario de registro">Registrar horas</button>
         <button [routerLink]="['/inicio/ver-horas']"><img src="/assets/Reloj.png" alt="Reloj">Ver horas</button>
         <div class="widget">
             <div class="widget-2">
                 <p class="title">Última hora registrada</p>
-                <p>12-03-2025 - 2,75 horas</p>
+                @if (lastHour) {
+                <p>{{lastHour.date | date:'dd-MM-yyyy'}} - {{ lastHour.hours }} horas</p>
+                }@else {
+                <p>No has realizado ninguna hora.</p>
+                }
+
             </div>
             <div class="widget-2">
                 <p class="title">Esta semana</p>
-                <p>6 horas</p>
+                @if (totalWeekHours > 0) {
+                <p>{{ totalWeekHours }} horas</p>
+                }@else {
+                <p>No has realizado horas esta semana.</p>
+                }
             </div>
         </div>
     </div>
