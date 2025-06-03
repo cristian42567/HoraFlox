@@ -15,16 +15,16 @@ export class ViewHoursComponent implements OnInit {
 
   constructor(private service: HoursService) { }
 
-  //Creamos un array de horas con su respectiva interfaz para almacenar las horas que se obtienen en un servicio.
-  hours: HourInterface[] = [];
+  hours: HourInterface[] = []; //Creamos un array de horas con su respectiva interfaz para almacenar las horas que se obtienen en un servicio.
+  totalHours: number = 0; //Creamos una varible para contar el total de horas.
 
   ngOnInit(): void {
     //Nos suscribimos al observable del servicio 'HoursService' para recibir los datos cuando cambien.
     this.service.observableHours.subscribe((data) => {
-      this.hours = data;
+      this.hours = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); //Ordenamos las fechas para que salgan en orden.
+      this.totalHours = this.hours.reduce((acc, hour) => acc + hour.hours, 0); //Sumamos todas las horas del array hours.
     });
-    //Pedimos los datos a la API del backend.
-    this.service.getAllHours();
+    this.service.getAllHours(); //Pedimos los datos a la API del backend.
   }
 
   @Input() editMode: boolean = false; //Con Input permitimos escuchar 'editMode' al hijo.
@@ -33,7 +33,7 @@ export class ViewHoursComponent implements OnInit {
   clickOnEdit(hour: HourInterface) {
     this.hourToEdit = { ...hour }; //Copiamos los datos de la fila 'hour' en hourToEdit.
     this.EditClicked = true; //Al hacer click en Editar 'editClicked' cambia a true y esto hará que se muestre el formulario.
-    document.body.style.overflow = 'hidden'; //Al abrir el formulario de editar escondemos el scroll.
+    document.body.style.overflow = 'hidden'; //Al abrir el formulario de editar escondemos el scroll si es que lo tiene.
   }
 
   hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.

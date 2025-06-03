@@ -1,17 +1,7 @@
 <div class="container">
-    <div class="top-bar">
-        <div class="record">
-            <p>Historial de horas</p>
-        </div>
-        <div class="buttons">
-            <p>Clasificar por:</p>
-            <button>Semana</button>
-            <button>Mes</button>
-            <button>Año</button>
-            <button>Total</button>
-        </div>
+    <div class="record">
+        <p>Historial de horas</p>
     </div>
-
     <div class="content">
         <table>
             <thead>
@@ -28,7 +18,8 @@
                     <td>{{hour.hours}} Horas</td>
                     <td>{{hour.date | date: 'dd/MM/yyyy'}}</td>
                     <td>{{hour.description}}</td>
-                    <td><button (click)="clickOnEdit(hour)">Editar</button>/<button (click)="deleteHour(hour.id)">Eliminar</button></td>
+                    <td><button (click)="clickOnEdit(hour)" class="edit">Editar</button>|<button
+                            (click)="deleteHour(hour.id)" class="delete">Eliminar</button></td>
                 </tr>
                 }
             </tbody>
@@ -36,23 +27,13 @@
     </div>
 
     <div class="interaction">
-        <div class="buttons-navegation">
-            <div class="button">
-                <button><img src="/assets/left-arrow.png" alt="left-arrow"></button>
-                <p>Página anterior</p>
-            </div>
-            <div class="button">
-                <button><img src="/assets/right-arrow.png" alt="right-arrow"></button>
-                <p>Página siguiente</p>
-            </div>
+        <div class="return-container">
+            <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
         </div>
         <div class="total-hours">
-            <p class="total">Total de horas:</p>
-            <p class="number">16.50</p>
+            <p class="total">Número total de horas:</p>
+            <p class="number">{{ totalHours }}</p>
         </div>
-    </div>
-    <div class="return-container">
-        <button [routerLink]="['/inicio']" class="return">Volver a inicio</button>
     </div>
 </div>
 
