@@ -9,7 +9,8 @@
     <form [formGroup]="form" (ngSubmit)="rewriteHour()" (ngSubmit)="createNewHour()">
         <main>
             <p>Horas</p>
-            <input type="number" formControlName="hours">
+            <input type="number" formControlName="hours" step="0.25">
+            <!--El step es para que sume de 0.25 en 0.25 en vez de 1 en 1.-->
 
             <p>Fecha</p>
             <input type="date" formControlName="date">
