@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { HourInterface } from '../../interfaces/HourInterface';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HoursService } from '../../services/hours.service';
 
 @Component({
@@ -28,9 +28,9 @@ export class HoursFormComponent implements OnInit {
   ngOnInit(): void {
     //Inicializo el formulario vacio.
     this.form = this.fb.group({
-      hours: [],
-      date: [''],
-      description: [''],
+      hours: [null, [Validators.required, Validators.min(0.25)]],
+      date: ['', [Validators.required]],
+      description: ['', [Validators.maxLength(36)]],
     });
 
     //Si estamos editando y tiene datos, cargamos los valores del formulario con sus datos.
@@ -44,27 +44,19 @@ export class HoursFormComponent implements OnInit {
 
   }
 
-  //Función para actualizar las horas.
-  rewriteHour() {
-    if (this.form.valid) { //Comprobamos que el formulario sea válido antes de continuar.
-      const updatedHour: HourInterface = this.form.value; //Obtenemos los datos del formulario como objeto 'HourInterface'.
+  onSubmit() {
+    this.form.markAllAsTouched(); // Muestra los errores al darle a 'Añadir' o a 'Guardar'.
 
-      if (this.editMode && this.hour?.id) { //Verificamos que estamos en 'editMode' y que el id es válido.
-        this.hoursService.updateHour(this.hour.id, updatedHour); //Llamamos al servicio para actualizar la hora en el backend.
-        this.closeForm(); // Cerramos el formulario después de actualizar.
-      }
-    }
-  }
+    if (this.form.valid) {
+      const hourData: HourInterface = this.form.value;
 
-  //Función para crear las horas.
-  createNewHour() {
-    if (this.form.valid) { //Comprobamos que el formulario sea válido antes de continuar.
-      const newHour: HourInterface = this.form.value; //Obtenemos los datos del formulario como objeto 'HourInterface'.
-
-      if (!this.editMode) { //Verificamos que no estamos en 'editMode'.
-        this.hoursService.createHour(newHour).subscribe(() => { //Llamamos al servicio para crear la hora en el backend y nos suscribimos para que siga el código cuando esté creado.
-          this.hoursService.getAllHours(); //Actualizamos la lista de horas llamando al servicio para obtener todas las horas.
-          this.router.navigate(['inicio/ver-horas']); //Navegamos a la ruta para ver las horas.
+      if (this.editMode && this.hour?.id) {
+        this.hoursService.updateHour(this.hour.id, hourData);
+        this.closeForm();
+      } else {
+        this.hoursService.createHour(hourData).subscribe(() => {
+          this.hoursService.getAllHours();
+          this.router.navigate(['inicio/ver-horas']);
         });
       }
     }

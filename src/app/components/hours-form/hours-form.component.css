@@ -83,15 +83,30 @@ footer {
     transform: scale(0.98);
 }
 
-/* Responsive para pantallas pequeñas, menores de 420px */
+/*Si tenemos los botones deshabilitados hacemos que no funcione el hover.*/
+button:disabled,
+button[disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+.error {
+    color: #bd0000;
+    font-size: 0.9rem;
+}
+
+/* Responsive para pantallas pequeñas, menores de 420px.*/
 @media (max-width: 420px) {
 
     .container {
         width: 95%;
+        font-size: 1rem;
     }
 
     header {
         padding: 5px;
+        font-size: 1.1rem;
     }
 
     footer {

@@ -6,17 +6,26 @@
         <p>Editar horas</p>
         }
     </header>
-    <form [formGroup]="form" (ngSubmit)="rewriteHour()" (ngSubmit)="createNewHour()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <main>
             <p>Horas</p>
             <input type="number" formControlName="hours" step="0.25">
+            @if (form.get('hours')?.invalid && form.get('hours')?.touched) {
+            <p class="error">Es obligatorio poner al menos 0.25 horas.</p>
+            }
             <!--El step es para que sume de 0.25 en 0.25 en vez de 1 en 1.-->
 
             <p>Fecha</p>
             <input type="date" formControlName="date">
+            @if(form.get('date')?.invalid && form.get('date')?.touched) {
+            <p class="error">Es obligatorio poner la fecha.</p>
+            }
 
             <p>Descripción</p>
             <input type="text" formControlName="description">
+            @if(form.get('description')?.invalid && form.get('description')?.touched) {
+            <p class="error">El máximo número de caracteres son 36.</p>
+            }
         </main>
 
         <footer>
@@ -28,9 +37,9 @@
             <!--Pongo type button para prevenir aunque este no me intentaba enviar el formulario como el de volver a inicio.-->
             }
             @if (editMode == false) {
-            <button type="submit" class="add">Añadir</button>
+            <button type="submit" class="add" [disabled]="form.invalid">Añadir</button>
             }@else {
-            <button type="submit" class="add">Guardar</button>
+            <button type="submit" class="add" [disabled]="form.invalid">Guardar</button>
             }
         </footer>
     </form>
