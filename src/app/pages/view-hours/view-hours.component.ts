@@ -5,6 +5,7 @@ import { HourInterface } from '../../interfaces/HourInterface';
 import { CommonModule } from '@angular/common';
 import { HoursFormComponent } from "../../components/hours-form/hours-form.component";
 import { DeleteComponent } from "../../components/delete/delete.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view-hours',
@@ -14,14 +15,14 @@ import { DeleteComponent } from "../../components/delete/delete.component";
 })
 export class ViewHoursComponent implements OnInit {
 
-  constructor(private service: HoursService) { }
+  constructor(private service: HoursService, private title: Title) { }
 
   hours: HourInterface[] = []; //Creamos un array de horas con su respectiva interfaz para almacenar las horas que se obtienen en un servicio.
   hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
   totalHours: number = 0; //Creamos una varible para contar el total de horas.
 
-  ngOnInit(): void {
-    //Nos suscribimos al observable del servicio 'HoursService' para recibir los datos cuando cambien.
+  ngOnInit(): void { //Nos suscribimos al observable del servicio 'HoursService' para recibir los datos cuando cambien.
+    this.title.setTitle('HoraFlox - ver horas'); //Cambiamos el nombre de la pestaña del navegador.
     this.service.observableHours.subscribe((data) => {
       this.hours = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); //Ordenamos las fechas para que salgan en orden.
       this.totalHours = this.hours.reduce((acc, hour) => acc + hour.hours, 0); //Sumamos todas las horas del array hours.

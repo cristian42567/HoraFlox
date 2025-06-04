@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { HourInterface } from '../../interfaces/HourInterface';
 import { HoursService } from '../../services/hours.service';
 import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,9 +17,10 @@ export class DashboardComponent implements OnInit {
   lastHour: HourInterface | null = null; //Variable con la última hora registrada.
   totalWeekHours: number = 0; //Variable que usaremos para almacenar las horas de los últimos siente días.
 
-  constructor(private hoursService: HoursService) { }
+  constructor(private hoursService: HoursService, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('HoraFlox - inicio'); //Cambiamos el nombre de la pestaña del navegador.
     this.hoursService.observableHours.subscribe(data => { //Nos suscribimos al observable que emite las horas cuando están disponibles.
       this.hours = data; //Guardamos las horas en el array.
       this.calculateWidgetData(); //Calculamos los datos que se mostrarán en el widget.
