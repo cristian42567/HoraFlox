@@ -4,10 +4,11 @@ import { HoursService } from '../../services/hours.service';
 import { HourInterface } from '../../interfaces/HourInterface';
 import { CommonModule } from '@angular/common';
 import { HoursFormComponent } from "../../components/hours-form/hours-form.component";
+import { DeleteComponent } from "../../components/delete/delete.component";
 
 @Component({
   selector: 'app-view-hours',
-  imports: [RouterLink, CommonModule, HoursFormComponent],
+  imports: [RouterLink, CommonModule, HoursFormComponent, DeleteComponent],
   templateUrl: './view-hours.component.html',
   styleUrl: './view-hours.component.css'
 })
@@ -16,6 +17,7 @@ export class ViewHoursComponent implements OnInit {
   constructor(private service: HoursService) { }
 
   hours: HourInterface[] = []; //Creamos un array de horas con su respectiva interfaz para almacenar las horas que se obtienen en un servicio.
+  hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
   totalHours: number = 0; //Creamos una varible para contar el total de horas.
 
   ngOnInit(): void {
@@ -28,25 +30,37 @@ export class ViewHoursComponent implements OnInit {
   }
 
   @Input() editMode: boolean = false; //Con Input permitimos escuchar 'editMode' al hijo.
-  EditClicked: boolean = false; //Variable para saber si el usuario ha hecho click en el botón editar.
+  editClicked: boolean = false; //Variable para saber si el usuario ha hecho click en el botón editar.
+  deleteClicked: boolean = false; //Variable para saber si el usuario ha hecho click en el botón eliminar.
+  idToDelete: number = 0; //Variable para guardar el ID a eliminar.
 
   clickOnEdit(hour: HourInterface) {
     this.hourToEdit = { ...hour }; //Copiamos los datos de la fila 'hour' en hourToEdit.
-    this.EditClicked = true; //Al hacer click en Editar 'editClicked' cambia a true y esto hará que se muestre el formulario.
+    this.editClicked = true; //Al hacer click en Editar 'editClicked' cambia a true y esto hará que se muestre el formulario.
     document.body.style.overflow = 'hidden'; //Al abrir el formulario de editar escondemos el scroll si es que lo tiene.
   }
 
-  hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
-
   closeEditHandler() {
-    this.EditClicked = false; //Ocultamos el formulario.
+    this.editClicked = false; //Ocultamos el formulario.
     document.body.style.overflow = 'visible'; // Restauramos el scroll al salir de editar.
   }
 
-  deleteHour(id: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar esta hora?')) { //Preguntamos si estamos seguros de eliminar la hora.
-      this.service.deleteHour(id); //Llamamos al servicio para eliminar la hora.
-    }
+  showDeleteConfirmation(id: number) {
+    this.idToDelete = id; //Obtenemos el ID del registro a eliminar.
+    this.deleteClicked = true; //Ponemos la varible en true para que abra el componente.
+    document.body.style.overflow = 'hidden'; //Al abrir el formulario de editar escondemos el scroll si es que lo tiene.
+  }
+
+  cancelDelete() {
+    this.deleteClicked = false; //Ponemos la varible en false para que cierre el componente.
+    this.idToDelete = 0; //Ponemos la varibale en 0 para que no tenga guardado ningún valor.
+    document.body.style.overflow = 'visible'; // Restauramos el scroll al salir de editar.
+  }
+
+  confirmDelete() {
+    this.service.deleteHour(this.idToDelete); //Llamamos al servicio para eliminar la hora.
+    this.deleteClicked = false; //Ponemos la varible en false para que cierre el componente.
+    document.body.style.overflow = 'visible'; // Restauramos el scroll al salir de editar.
   }
 
 }

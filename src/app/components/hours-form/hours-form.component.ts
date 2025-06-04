@@ -13,7 +13,7 @@ import { HoursService } from '../../services/hours.service';
 export class HoursFormComponent implements OnInit {
 
   @Input() editMode: boolean = false; //Con Input para decirle al hijo si el formulario está en modo edición.
-  @Output() closeEdit: EventEmitter<void> = new EventEmitter<void>();//Con Output para decirle al componente padre que se cierre el formulario cuando se emita el evento.
+  @Output() closeEdit: EventEmitter<void> = new EventEmitter<void>(); //Con Output para decirle al componente padre que se cierre el formulario cuando se emita el evento.
   @Input() hour!: HourInterface; //Con Input para recibir los datos de la hora a editar.
 
   //Método que emite un evento al cerrar el formulario.

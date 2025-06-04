@@ -119,9 +119,22 @@ table button {
     transform: scale(0.95);
 }
 
-/* Contenedor que se abre al darle a editar al botón. */
+/* Contenedor que se abre al darle al botón de editar. */
 .container-edit {
     background-color: #213448;
+    position: fixed;
+    width: 100vw;
+    height: 120vh;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-180px);
+}
+
+/* Contenedor que se abre al darle al botón de eliminar. */
+.container-edit-two {
+    background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
     width: 100vw;
     height: 120vh;
@@ -187,6 +200,10 @@ table button {
         height: 130vh;
         margin-top: -45px;
         transform: translateY(-80px);
+    }
+
+    .container-edit-two {
+        height: 150vh;
     }
 
 }
