@@ -9,16 +9,13 @@ import { HourInterface } from '../interfaces/HourInterface';
 
 export class HoursService {
 
-  //BehaviorSubject para almacenar y emitir la lista de horas.
-  private subjectHours: BehaviorSubject<HourInterface[]> = new BehaviorSubject<HourInterface[]>([]);
+  private subjectHours: BehaviorSubject<HourInterface[]> = new BehaviorSubject<HourInterface[]>([]); //BehaviorSubject para almacenar y emitir la lista de horas.
 
-  //Observable expuesto para que los componentes se suscriban.
-  observableHours: Observable<HourInterface[]> = this.subjectHours.asObservable();
+  observableHours: Observable<HourInterface[]> = this.subjectHours.asObservable(); //Observable expuesto para que los componentes se suscriban.
 
   constructor(private hours: HttpClient) { }
 
-  //Método get que recoge las horas del backend y actualiza el BehaviorSubject.
-  getAllHours() {
+  getAllHours() { //Método get que recoge las horas del backend y actualiza el BehaviorSubject.
     this.hours
       .get<HourInterface[]>('http://localhost:8080/horaflox/ver-horas')
       .subscribe((data) => {
@@ -26,23 +23,21 @@ export class HoursService {
       });
   }
 
-  //Método create para crear la hora.
-  createHour(newHour: HourInterface) {
+  createHour(newHour: HourInterface) { //Método create para crear la hora.
     return this.hours.post('http://localhost:8080/horaflox/guardar-hora', newHour)
     //No pongo .subscribe porque lo pongo en 'hours-form.component.ts', así me puedo suscribir también a la navegación.
   }
 
-  //Método put para actualizar la hora.
-  updateHour(id: number, updatedHour: HourInterface) {
+  updateHour(id: number, updatedHour: HourInterface) { //Método put para actualizar la hora.
     this.hours
       .put(`http://localhost:8080/horaflox/actualizar-hora/${id}`, updatedHour)
       .subscribe(() => {
-        this.getAllHours();
+        this.getAllHours(); //Refrescamos las horas tras actualizar la hora.
       });
   }
 
-  //Método delete para eliminar la hora.
-  deleteHour(id: number) {
+
+  deleteHour(id: number) { //Método delete para eliminar la hora.
     this.hours
       .delete(`http://localhost:8080/horaflox/eliminar-hora/${id}`)
       .subscribe(() => {

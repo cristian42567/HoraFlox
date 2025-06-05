@@ -16,8 +16,7 @@ export class HoursFormComponent implements OnInit {
   @Output() closeEdit: EventEmitter<void> = new EventEmitter<void>(); //Con Output para decirle al componente padre que se cierre el formulario cuando se emita el evento.
   @Input() hour!: HourInterface; //Con Input para recibir los datos de la hora a editar.
 
-  //Método que emite un evento al cerrar el formulario.
-  closeForm() {
+  closeForm() { //Método que emite un evento al cerrar el formulario.
     this.closeEdit.emit();
   }
 
@@ -26,16 +25,14 @@ export class HoursFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private hoursService: HoursService, private router: Router) { }
 
   ngOnInit(): void {
-    //Inicializo el formulario vacio.
-    this.form = this.fb.group({
-      hours: [null, [Validators.required, Validators.min(0.25)]],
-      date: ['', [Validators.required]],
-      description: ['', [Validators.maxLength(36)]],
+    this.form = this.fb.group({ //Inicializamos el formulario vacio.
+      hours: [null, [Validators.required, Validators.min(0.25)]], //Ponemos que es obligatorio rellenar este campo y que tiene que ser mínimo 0.25 horas.
+      date: ['', [Validators.required]], //Ponemos que es obligatorio el campo de la fecha.
+      description: ['', [Validators.maxLength(36)]], //Ponemos que en este campo el máximo de carácteres es de 36.
     });
 
-    //Si estamos editando y tiene datos, cargamos los valores del formulario con sus datos.
-    if (this.editMode && this.hour) { //Comprobamos que estamos en modo edicion y que el objeto 'hour' continene datos.
-      this.form.patchValue({ //Rellenamos el formulario con los valores del objeto 'hour'.
+    if (this.editMode && this.hour) { //Si estamos editando y tiene datos, cargamos los valores del formulario con sus datos.
+      this.form.patchValue({
         hours: this.hour.hours,
         date: this.hour.date,
         description: this.hour.description,
@@ -51,12 +48,12 @@ export class HoursFormComponent implements OnInit {
       const hourData: HourInterface = this.form.value;
 
       if (this.editMode && this.hour?.id) {
-        this.hoursService.updateHour(this.hour.id, hourData);
+        this.hoursService.updateHour(this.hour.id, hourData); //Editamos la hora si estamos en editar.
         this.closeForm();
       } else {
-        this.hoursService.createHour(hourData).subscribe(() => {
-          this.hoursService.getAllHours();
-          this.router.navigate(['inicio/ver-horas']);
+        this.hoursService.createHour(hourData).subscribe(() => { //Creamos la hora si estamos en el modo de registro.
+          this.hoursService.getAllHours(); //Actualizamos los datos de las horas.
+          this.router.navigate(['inicio/ver-horas']); //Navegamos a 'ver horas' al registrar una hora nueva.
         });
       }
     }

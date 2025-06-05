@@ -18,10 +18,10 @@ export class ViewHoursComponent implements OnInit {
   constructor(private service: HoursService, private title: Title) { }
 
   hours: HourInterface[] = []; //Creamos un array de horas con su respectiva interfaz para almacenar las horas que se obtienen en un servicio.
-  hourToEdit!: HourInterface; //Guradamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
+  hourToEdit!: HourInterface; //Guardamos los datos de la hora que se va a editar para cargarlos en el formulario de editar.
   totalHours: number = 0; //Creamos una varible para contar el total de horas.
 
-  ngOnInit(): void { //Nos suscribimos al observable del servicio 'HoursService' para recibir los datos cuando cambien.
+  ngOnInit(): void {
     this.title.setTitle('HoraFlox - ver horas'); //Cambiamos el nombre de la pestaña del navegador.
     this.service.observableHours.subscribe((data) => {
       this.hours = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); //Ordenamos las fechas para que salgan en orden.
@@ -54,7 +54,7 @@ export class ViewHoursComponent implements OnInit {
 
   cancelDelete() {
     this.deleteClicked = false; //Ponemos la varible en false para que cierre el componente.
-    this.idToDelete = 0; //Ponemos la varibale en 0 para que no tenga guardado ningún valor.
+    this.idToDelete = 0; //Reiniciamos el valor de ID.
     document.body.style.overflow = 'visible'; // Restauramos el scroll al salir de editar.
   }
 

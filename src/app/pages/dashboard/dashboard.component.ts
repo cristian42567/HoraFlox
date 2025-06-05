@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   hours: HourInterface[] = []; //Array con todas las horas del backend.
   lastHour: HourInterface | null = null; //Variable con la última hora registrada.
-  totalWeekHours: number = 0; //Variable que usaremos para almacenar las horas de los últimos siente días.
+  totalWeekHours: number = 0; //Variable que usaremos para almacenar las horas de los últimos siete días.
 
   constructor(private hoursService: HoursService, private title: Title) { }
 
